@@ -1,22 +1,26 @@
 version: '3'
 services:
   # MySql数据库
-#  shopping-login-mysql:
-#    image: mysql:5.6
-#    ports:
-#    - "3306:3306"
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#      MYSQL_DATABASE: user
-#    networks:
-#    - gxf-network
+  leaveword-mysql:
+    image: mysql:5.6
+    ports:
+    - "3307:3306"
+    command: [
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci'
+    ]
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: leaveword
+    networks:
+    - fdse-network
 
   word-service:
     build: word-service
-    image: LeaveWordMicroservice/shoppingcar-service
+    image: leaveword-microservice/word-service
     restart: always
-#    depends_on:
-#    - xx-mysql
+    depends_on:
+    - leaveword-mysql
     ports:
     - 8081:8081
     networks:
