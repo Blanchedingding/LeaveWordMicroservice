@@ -1,0 +1,27 @@
+version: '3'
+services:
+  # MySql数据库
+#  shopping-login-mysql:
+#    image: mysql:5.6
+#    ports:
+#    - "3306:3306"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: user
+#    networks:
+#    - gxf-network
+
+  word-service:
+    build: word-service
+    image: LeaveWordMicroservice/shoppingcar-service
+    restart: always
+#    depends_on:
+#    - xx-mysql
+    ports:
+    - 8081:8081
+    networks:
+    - fdse-network
+
+networks:
+  fdse-network:
+    driver: bridge
