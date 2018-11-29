@@ -1,5 +1,7 @@
+import net.bytebuddy.utility.RandomString;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -8,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class UserLoginTest {
+public class LeaveWordTest {
 
     private WebDriver driver;
     private String baseUrl;
@@ -22,21 +24,37 @@ public class UserLoginTest {
     }
 
     @Test
-    //Test Flow Preserve Step 1: - Login
     public void testLogin()throws Exception{
         driver.get(baseUrl + "/");
 
         //define username and password
         String username = "ding";
         String password = "12345";
-
-        //call function login
-        login(driver,username,password);
-        Thread.sleep(1000);
-
+        login(driver, username, password);
         //turn to url: http://localhost:8080/LeaveWord/words.html
         String currentUrl = driver.getCurrentUrl();
         Assert.assertEquals(currentUrl.contains("words"), true);
+    }
+
+    @Test(dependsOnMethods = {"testLogin"})
+    public void testLeaveWord()throws Exception{
+        //define title and content
+        String title = randomString();
+        String content = randomString();
+
+        driver.findElement(By.id("title")).clear();
+        driver.findElement(By.id("title")).sendKeys(title);
+        driver.findElement(By.id("content")).clear();
+        driver.findElement(By.id("content")).sendKeys(content);
+        driver.findElement(By.xpath("//button[text()='提交']")).click();
+        Thread.sleep(5000);
+
+        String titlePath = "//h2[contains(text(), " + title + ")]";
+        String contentPath = "//h5[contains(text(), "+ content +")]";
+        WebElement titleElement = driver.findElement(By.xpath(titlePath));
+        Assert.assertEquals(null != titleElement, true);
+        WebElement contentElement = driver.findElement(By.xpath(contentPath));
+        Assert.assertEquals(null != contentElement, true);
     }
 
     public static void login(WebDriver driver,String username,String password){
@@ -45,6 +63,11 @@ public class UserLoginTest {
         driver.findElement(By.id("inputPassword")).clear();
         driver.findElement(By.id("inputPassword")).sendKeys(password);
         driver.findElement(By.xpath("//button[text()='登录']")).click();
+    }
+
+    static String randomString(){
+        RandomString rs = new RandomString();
+        return rs.nextString();
     }
 
     @AfterClass
