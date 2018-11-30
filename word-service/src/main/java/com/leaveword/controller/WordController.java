@@ -1,7 +1,7 @@
 package com.leaveword.controller;
 
-import com.leaveword.Utils.Response;
-import com.leaveword.service.WordService;
+import com.leaveword.service.serviceApi.WordService;
+import org.fdse.commonservice.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +24,8 @@ public class WordController {
      */
     @PostMapping(value = "/leaveWord")
     public Response leaveWord(@RequestParam("userId")Integer userId,
-                                 @RequestParam("title")String title,
-                                 @RequestParam("content")String content){
+                              @RequestParam("title")String title,
+                              @RequestParam("content")String content){
         return wordService.leaveWord(userId,title,content);
     }
 

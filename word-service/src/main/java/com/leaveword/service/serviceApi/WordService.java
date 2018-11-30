@@ -1,6 +1,7 @@
-package com.leaveword.service;
+package com.leaveword.service.serviceApi;
 
-import com.leaveword.Utils.Response;
+
+import org.fdse.commonservice.utils.Response;
 
 public interface WordService {
     Response getWords(Integer userId);

@@ -1,7 +1,7 @@
 package com.leaveword.controller;
 
-import com.leaveword.Utils.Response;
-import com.leaveword.service.UserService;
+import com.leaveword.service.serviceApi.UserService;
+import org.fdse.commonservice.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,16 +27,16 @@ public class UserController {
         return userService.userRegister(userName,userPassword);
     }
 
-    /**
-     * 根据userId获取用户
-     *
-     * @param userId
-     * @return
-     */
-    @PostMapping(value = "/getUser")
-    public Response getUser(@RequestParam("userId")Integer userId){
-        return userService.getUser(userId);
-    }
+//    /**
+//     * 根据userId获取用户
+//     *
+//     * @param userId
+//     * @return
+//     */
+//    @PostMapping(value = "/getUser")
+//    public Response getUser(@RequestParam("userId")Integer userId){
+//        return userService.getUser(userId);
+//    }
 
     /**
      * 用户登录

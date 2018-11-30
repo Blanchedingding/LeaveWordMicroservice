@@ -1,4 +1,4 @@
-package com.leaveword.Utils;
+package org.fdse.commonservice.utils;
 
 import java.sql.Timestamp;
 

@@ -11,6 +11,8 @@
 
     <modules>
         <module>word-service</module>
+        <module>user-service</module>
+        <module>common-service</module>
     </modules>
 
 </project>

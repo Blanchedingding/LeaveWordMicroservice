@@ -1,9 +1,9 @@
-package com.leaveword.service;
+package com.leaveword.service.serviceApi;
 
-import com.leaveword.Utils.Response;
+import org.fdse.commonservice.utils.Response;
 
 public interface UserService {
-    Response getUser(Integer userId);
+//    Response getUser(Integer userId);
     Response userRegister(String userName,String userPassword);
     Response userLogin(String userName,String userPassword);
 }

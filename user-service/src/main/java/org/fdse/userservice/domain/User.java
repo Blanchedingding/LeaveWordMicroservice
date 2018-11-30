@@ -1,4 +1,4 @@
-package com.leaveword.domain;
+package org.fdse.userservice.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;

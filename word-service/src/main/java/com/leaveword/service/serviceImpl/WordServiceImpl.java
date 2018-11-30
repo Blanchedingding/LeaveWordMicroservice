@@ -1,12 +1,14 @@
-package com.leaveword.service;
+package com.leaveword.service.serviceImpl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.leaveword.Utils.CommonTools;
-import com.leaveword.Utils.Response;
+
 import com.leaveword.domain.Word;
 import com.leaveword.repository.UserRepository;
 import com.leaveword.repository.WordRepository;
+import com.leaveword.service.serviceApi.WordService;
+import org.fdse.commonservice.utils.CommonTools;
+import org.fdse.commonservice.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
