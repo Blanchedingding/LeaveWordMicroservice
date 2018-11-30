@@ -12,6 +12,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: leaveword
+    volumes:
+      - ./mysql/config/mysql.cnf:/etc/my.cnf
+      - ./mysql/mysql_data:/var/lib/mysql
     networks:
     - fdse-network
 

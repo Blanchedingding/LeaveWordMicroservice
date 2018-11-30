@@ -11,7 +11,7 @@
 
     <modules>
         <module>word-service</module>
-        <module>ui-test</module>
+        <!--<module>ui-test</module>-->
     </modules>
 
 </project>
