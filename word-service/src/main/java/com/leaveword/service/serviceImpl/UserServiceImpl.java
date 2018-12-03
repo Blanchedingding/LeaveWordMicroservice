@@ -8,6 +8,8 @@ import org.fdse.commonservice.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -21,10 +23,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response userRegister(String userName, String userPassword) {
-        Map<String, Object> uriVariables = new HashMap<>();
-        uriVariables.put("userName", userName);
-        uriVariables.put("userPassword", userPassword);
-        ResponseEntity<Response> responseEntity = restTemplate.getForEntity("http://user-service:8081/user", Response.class, uriVariables);
+        MultiValueMap<String,String> requestEntity = new LinkedMultiValueMap<>();
+        requestEntity.add("userName", userName);
+        requestEntity.add("userPassword", userPassword);
+        ResponseEntity<Response> responseEntity = restTemplate.postForEntity("http://user-service:8081/user", requestEntity ,Response.class);
+//        ResponseEntity<Response> responseEntity = restTemplate.getForEntity("http://user-service:8081/user/"+ userName + "/" + userPassword, Response.class);
         return responseEntity.getBody();
 
     }

@@ -3,10 +3,7 @@ package org.fdse.userservice.controller;
 import org.fdse.commonservice.utils.Response;
 import org.fdse.userservice.service.serviceApi.UserServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
@@ -40,8 +37,8 @@ public class UserController {
      * @param userPassword
      * @return
      */
-    @PostMapping(value = "/user/{userName}/{userPassword}")
-    public Response user(@PathVariable(name = "userName")String userName, @PathVariable(name = "userPassword")String userPassword){
+    @PostMapping(value = "/user")
+    public Response user(@RequestParam("userName") String userName, @RequestParam("userPassword") String userPassword){
         return userServiceApi.addUser(userName, userPassword);
     }
 
