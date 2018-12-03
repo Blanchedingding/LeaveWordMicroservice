@@ -39,7 +39,6 @@ services:
   word-service:
     build: word-service
     image: leaveword-microservice/word-service
-    container_name: word-service
     restart: always
     depends_on:
     - word-mysql
@@ -51,7 +50,6 @@ services:
   user-service:
     build: user-service
     image: leaveword-microservice/user-service
-    container_name: user-service
     restart: always
     depends_on:
     - user-mysql

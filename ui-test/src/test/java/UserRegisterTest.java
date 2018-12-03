@@ -17,7 +17,7 @@ public class UserRegisterTest {
     public void setUp() throws Exception {
         System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         driver = new ChromeDriver();
-        baseUrl = "http://localhost:8080/LeaveWord";
+        baseUrl = "http://10.141.211.177";
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 

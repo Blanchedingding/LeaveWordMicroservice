@@ -19,24 +19,39 @@ public class LeaveWordTest {
     public void setUp() throws Exception {
         System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         driver = new ChromeDriver();
-        baseUrl = "http://localhost:8080/LeaveWord";
+        baseUrl = "http://10.141.211.177";
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
-
     @Test
-    public void testLogin()throws Exception{
+    public void testRegister()throws Exception{
         driver.get(baseUrl + "/");
 
         //define username and password
-        String username = "ding";
-        String password = "12345";
-        login(driver, username, password);
-        //turn to url: http://localhost:8080/LeaveWord/words.html
+        String username = randomString();
+        String password = randomString();
+        //register
+        driver.findElement(By.xpath("//button[text()='注册']")).click();
+        //turn to url: http://localhost:8080/LeaveWord/register.html
         String currentUrl = driver.getCurrentUrl();
+        Assert.assertEquals(currentUrl.contains("register"), true);
+
+        register(driver,username,password);
+        Thread.sleep(1000);
+        //turn to url: http://localhost:8080/LeaveWord/words.html
+        currentUrl = driver.getCurrentUrl();
         Assert.assertEquals(currentUrl.contains("words"), true);
     }
 
-    @Test(dependsOnMethods = {"testLogin"})
+    public static void register(WebDriver driver,String username,String password){
+        driver.findElement(By.id("inputUserName")).clear();
+        driver.findElement(By.id("inputUserName")).sendKeys(username);
+        driver.findElement(By.id("inputPassword")).clear();
+        driver.findElement(By.id("inputPassword")).sendKeys(password);
+        driver.findElement(By.xpath("//button[text()='注册']")).click();
+    }
+
+
+    @Test(dependsOnMethods = {"testRegister"})
     public void testLeaveWord()throws Exception{
         //define title and content
         String title = randomString();
@@ -55,14 +70,6 @@ public class LeaveWordTest {
         Assert.assertEquals(null != titleElement, true);
         WebElement contentElement = driver.findElement(By.xpath(contentPath));
         Assert.assertEquals(null != contentElement, true);
-    }
-
-    public static void login(WebDriver driver,String username,String password){
-        driver.findElement(By.id("inputUserName")).clear();
-        driver.findElement(By.id("inputUserName")).sendKeys(username);
-        driver.findElement(By.id("inputPassword")).clear();
-        driver.findElement(By.id("inputPassword")).sendKeys(password);
-        driver.findElement(By.xpath("//button[text()='登录']")).click();
     }
 
     static String randomString(){
