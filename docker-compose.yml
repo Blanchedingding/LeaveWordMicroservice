@@ -29,7 +29,7 @@ services:
     networks:
     - fdse-network
 
-  # serviceApi
+  # service
   word-service:
     build: word-service
     image: leaveword-microservice/word-service
