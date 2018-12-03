@@ -32,7 +32,7 @@ services:
   # serviceApi
   word-service:
     build: word-service
-    image: leaveword-microservice/word-serviceApi
+    image: leaveword-microservice/word-service
     restart: always
     depends_on:
     - word-mysql
@@ -43,7 +43,7 @@ services:
 
   user-service:
     build: user-service
-    image: leaveword-microservice/user-serviceApi
+    image: leaveword-microservice/user-service
     restart: always
     depends_on:
     - user-mysql

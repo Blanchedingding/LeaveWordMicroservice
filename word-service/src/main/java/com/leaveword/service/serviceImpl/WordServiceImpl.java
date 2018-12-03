@@ -2,15 +2,14 @@ package com.leaveword.service.serviceImpl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-
 import com.leaveword.domain.Word;
-import com.leaveword.repository.UserRepository;
 import com.leaveword.repository.WordRepository;
 import com.leaveword.service.serviceApi.WordService;
 import org.fdse.commonservice.utils.CommonTools;
 import org.fdse.commonservice.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ import java.util.List;
 public class WordServiceImpl implements WordService {
 
     @Autowired
-    UserRepository userRepository;
+    RestTemplate restTemplate;
 
     @Autowired
     WordRepository wordRepository;
@@ -34,8 +33,15 @@ public class WordServiceImpl implements WordService {
 
     @Override
     public Response leaveWord(Integer userId, String title, String content) {
-        if(userRepository.findOne(userId) == null)
-            return new Response("-1","用户不存在");
+        try {
+            Response response = restTemplate.getForEntity("http://user-service:8081/user", Response.class, userId).getBody();
+            if (!response.getStatus().equals("0")) {
+                return new Response("-1", "用户不存在");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            return new Response("-1","服务调用异常");
+        }
         if(CommonTools.isEmpty(title))
             return new Response("-1","标题不能为空");
         if(CommonTools.isEmpty(content))
