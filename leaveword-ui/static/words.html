@@ -40,7 +40,7 @@
 <script src="js/util.js"></script>
 <script type="application/javascript">
     if(getCookie("user") == null)
-        window.location.href= address+"index.html";
+        window.location.href= "/index.html";
 
     initWords();
     function initWords() {
@@ -51,7 +51,7 @@
         $.ajax({
             async : false,
             type : 'POST',
-            url : address+"getWords",
+            url : "/getWords",
             data : user,
             dataType : 'json',
             success : function(result) {
@@ -87,7 +87,7 @@
         $.ajax({
             async : false,
             type : 'POST',
-            url : address+"leaveWord",
+            url : "/leaveWord",
             data : word,
             dataType : 'json',
             success : function(result) {

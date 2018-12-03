@@ -13,8 +13,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: word
     volumes:
-    - ./mysql/config/mysql.cnf:/etc/my.cnf
-    - ./mysql/mysql_data:/var/lib/mysql
+    - ./word-mysql/config/mysql.cnf:/etc/my.cnf
+    - ./word-mysql/mysql_data:/var/lib/mysql
     networks:
     - fdse-network
 
@@ -29,6 +29,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: user
+    volumes:
+    - ./user-mysql/config/mysql.cnf:/etc/my.cnf
+    - ./user-mysql/mysql_data:/var/lib/mysql
     networks:
     - fdse-network
 
@@ -36,6 +39,7 @@ services:
   word-service:
     build: word-service
     image: leaveword-microservice/word-service
+    container_name: word-service
     restart: always
     depends_on:
     - word-mysql
@@ -47,6 +51,7 @@ services:
   user-service:
     build: user-service
     image: leaveword-microservice/user-service
+    container_name: user-service
     restart: always
     depends_on:
     - user-mysql

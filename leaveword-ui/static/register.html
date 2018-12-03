@@ -46,7 +46,7 @@
         $.ajax({
             async : false,
             type : 'POST',
-            url : address+"userRegister",
+            url : "/userRegister",
             data : user,
             dataType : 'json',
             success : function(result) {
@@ -58,7 +58,7 @@
         });
         if(response.status == "0"){
             setCookie("user",response.content,1);
-            window.location.href=address+"words.html";
+            window.location.href="/words.html";
         }
         else{
             alert(response.content);
@@ -66,7 +66,7 @@
     }
 
     function toLogin() {
-        window.location.href = address+"register.html";
+        window.location.href = "/register.html";
     }
 </script>
 </body>

@@ -1,6 +1,6 @@
 // var address = "http://localhost:8080/LeaveWord/";
 // var address = "http://10.141.211.177:8081/LeaveWord/";
-var address = "/LeaveWord/";
+// var address = "/LeaveWord/";
 
 function setCookie(name, value, days) {
     var d = new Date;
@@ -14,14 +14,14 @@ function getCookie(name) {
 }
 
 function getUserName(userId) {
-    var user = {};
-    user.userId = userId;
+    // var user = {};
+    // user.userId = userId;
     var response;
     $.ajax({
         async : false,
-        type : 'POST',
-        url : address+"getUser",
-        data : user,
+        type : 'GET',
+        url : "/user/" + userId,
+        // data : user,
         dataType : 'json',
         success : function(result) {
             response = result;

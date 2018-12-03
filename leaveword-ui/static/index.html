@@ -46,7 +46,7 @@
             $.ajax({
                 async : false,
                 type : 'POST',
-                url : address+"userLogin",
+                url : "/userLogin",
                 data : user,
                 dataType : 'json',
                 success : function(result) {
@@ -66,7 +66,7 @@
         }
 
         function toRegister() {
-			window.location.href = address+"register.html";
+			window.location.href = "/register.html";
         }
 	</script>
   </body>
