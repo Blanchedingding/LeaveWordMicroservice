@@ -63,6 +63,8 @@
         });
         if(response.status == "0"){
             var words = response.content;
+            if(words == "没有留言")
+                return;
             words = eval("("+words+")");
             var html = "";
             for(var i=0;i<words.length;i++){

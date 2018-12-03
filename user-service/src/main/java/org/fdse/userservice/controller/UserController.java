@@ -26,8 +26,8 @@ public class UserController {
      * @param userName
      * @return
      */
-    @GetMapping(value = "/user/{userName}")
-    public Response user(@PathVariable(name = "userName")String userName){
+    @GetMapping(value = "/user/filter")
+    public Response user(@RequestParam(name = "userName")String userName){
         return userServiceApi.getUserByName(userName);
     }
 

@@ -34,7 +34,7 @@ public class WordServiceImpl implements WordService {
     @Override
     public Response leaveWord(Integer userId, String title, String content) {
         try {
-            Response response = restTemplate.getForEntity("http://user-service:8081/user", Response.class, userId).getBody();
+            Response response = restTemplate.getForEntity("http://user-service:8081/user/{userId}", Response.class, userId).getBody();
             if (!response.getStatus().equals("0")) {
                 return new Response("-1", "用户不存在");
             }

@@ -39,7 +39,9 @@ public class UserServiceImpl implements UserService {
         if(CommonTools.isEmpty(userPassword))
             return new Response("-1","用户密码不能为空");
         try {
-            Response response = restTemplate.getForEntity("http://user-service:8081/user", Response.class, userName).getBody();
+            Map<String,String> requestEntity = new HashMap<>();
+            requestEntity.put("userName", userName);
+            Response response = restTemplate.getForEntity("http://user-service:8081/user/filter?userName={userName}", Response.class, requestEntity).getBody();
             if(!response.getStatus().equals("0")){
                 return new Response("-1","获取用户异常");
             }
