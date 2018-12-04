@@ -85,7 +85,7 @@ services:
     depends_on:
     - user-service
     ports:
-    - 8083:8081
+    - 8084:8081
     networks:
     - fdse-network
 
