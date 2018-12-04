@@ -26,30 +26,4 @@ public class UserController {
                                  @RequestParam("userPassword")String userPassword){
         return userService.userRegister(userName,userPassword);
     }
-
-//    /**
-//     * 根据userId获取用户
-//     *
-//     * @param userId
-//     * @return
-//     */
-//    @PostMapping(value = "/getUser")
-//    public Response getUser(@RequestParam("userId")Integer userId){
-//        return userService.getUser(userId);
-//    }
-
-    /**
-     * 用户登录
-     *
-     * @param userName
-     * @param userPassword
-     * @return
-     */
-    @PostMapping(value = "/userLogin")
-    public Response userLogin(@RequestParam("userName")String userName,
-                              @RequestParam("userPassword")String userPassword){
-        return userService.userLogin(userName,userPassword);
-    }
-
-
 }

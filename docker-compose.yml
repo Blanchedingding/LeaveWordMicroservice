@@ -58,6 +58,17 @@ services:
     networks:
     - fdse-network
 
+  login-service:
+    build: login-service
+    image: leaveword-microservice/login-service
+    restart: always
+    depends_on:
+    - user-service
+    ports:
+    - 8083:8081
+    networks:
+    - fdse-network
+
   leaveword-ui:
     build: leaveword-ui
     image: leaveword-microservice/leaveword-ui
