@@ -22,17 +22,6 @@ public class UserServiceImpl implements UserService {
     RestTemplate restTemplate;
 
     @Override
-    public Response userRegister(String userName, String userPassword) {
-        MultiValueMap<String,String> requestEntity = new LinkedMultiValueMap<>();
-        requestEntity.add("userName", userName);
-        requestEntity.add("userPassword", userPassword);
-        ResponseEntity<Response> responseEntity = restTemplate.postForEntity("http://user-service:8081/user", requestEntity ,Response.class);
-//        ResponseEntity<Response> responseEntity = restTemplate.getForEntity("http://user-service:8081/user/"+ userName + "/" + userPassword, Response.class);
-        return responseEntity.getBody();
-
-    }
-
-    @Override
     public Response userLogin(String userName, String userPassword) {
         if(CommonTools.isEmpty(userName))
             return new Response("-1","用户名不能为空");
