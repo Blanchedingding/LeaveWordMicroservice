@@ -14,7 +14,8 @@
         <module>user-service</module>
         <module>common-service</module>
         <module>login-service</module>
-        <module>ui-test</module>
+        <!--<module>ui-test</module>-->
+        <module>register-service</module>
     </modules>
 
 </project>

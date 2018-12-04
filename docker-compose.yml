@@ -78,6 +78,17 @@ services:
     networks:
       - fdse-network
 
+  register-service:
+    build: register-service
+    image: leaveword-microservice/register-service
+    restart: always
+    depends_on:
+    - user-service
+    ports:
+    - 8083:8081
+    networks:
+    - fdse-network
+
 networks:
   fdse-network:
     driver: bridge
